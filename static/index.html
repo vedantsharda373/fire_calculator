@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRE + Coast FIRE Calculator</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <main class="layout">
+    <section class="hero">
+      <p class="kicker">Flexible planner</p>
+      <h1>FIRE + Coast FIRE Calculator</h1>
+      <p class="subtitle">Currency and tax country are independent so you can model all combinations.</p>
+    </section>
+
+    <section class="panel controls-panel">
+      <div class="toggles">
+        <label class="switch-row">
+          <input type="checkbox" id="useUSD" />
+          <span>Input currency: <strong id="currencyLabel">INR (₹)</strong></span>
+        </label>
+        <label class="switch-row">
+          <input type="checkbox" id="useUSTax" />
+          <span>Tax country: <strong id="taxCountryLabel">India</strong></span>
+        </label>
+        <label class="switch-row">
+          <input type="checkbox" id="darkMode" />
+          <span>Dark mode</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel form-panel">
+      <form id="fire-form" class="form-grid">
+        <label>Current age
+          <input type="number" id="currentAge" value="25" min="0" required />
+        </label>
+        <label>Retirement age
+          <input type="number" id="retirementAge" value="60" min="1" required />
+        </label>
+        <label>Current portfolio value <span class="money-unit">(₹)</span>
+          <input type="number" id="currentSavings" value="1500000" min="0" step="1000" required />
+        </label>
+        <label>Current cost basis <span class="money-unit">(₹)</span>
+          <input type="number" id="currentCostBasis" value="1200000" min="0" step="1000" required />
+        </label>
+        <label>Monthly contribution <span class="money-unit">(₹)</span>
+          <input type="number" id="monthlyContribution" value="60000" min="0" step="500" required />
+        </label>
+        <label>Expected annual return (%)
+          <input type="number" id="annualReturn" value="11" step="0.1" required />
+        </label>
+        <label>Annual spending target <span class="money-unit">(₹)</span>
+          <input type="number" id="annualSpending" value="1200000" min="0" step="1000" required />
+        </label>
+        <label>Withdrawal rate (%)
+          <input type="number" id="withdrawalRate" value="4" step="0.1" required />
+        </label>
+
+        <div id="usTaxFields" class="sub-grid hidden">
+          <label>US filing status
+            <select id="usFilingStatus">
+              <option value="single">Single</option>
+              <option value="married_joint">Married filing jointly</option>
+              <option value="head_household">Head of household</option>
+              <option value="married_separate">Married filing separately</option>
+            </select>
+          </label>
+          <label>Other taxable income <span class="money-unit">(₹)</span>
+            <input type="number" id="usOtherTaxableIncome" value="0" min="0" step="1000" />
+          </label>
+        </div>
+
+        <label class="check-row">
+          <input type="checkbox" id="useCoast" />
+          Switch on Coast FIRE mode
+        </label>
+
+        <label id="coastAgeWrap" class="hidden">Age to stop contributions
+          <input type="number" id="coastAge" value="35" min="0" />
+        </label>
+
+        <button type="submit">Calculate Plan</button>
+      </form>
+    </section>
+
+    <section id="results" class="panel hidden"></section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
